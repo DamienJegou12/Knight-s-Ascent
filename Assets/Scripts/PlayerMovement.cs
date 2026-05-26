@@ -5,14 +5,18 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     public float moveSpeed = 10f;
+    [SerializeField]
+    public float jumpSpeed = 10f;
     private Vector2 moveInput;
     private Rigidbody2D myRigidbody;
     private Animator myAnimator;
+    private BoxCollider2D myFeetCollider;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
     }
 
@@ -49,5 +53,17 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(myRigidbody.linearVelocity.x) * 5f, 5f);
         }
+    }
+
+    void Jump()
+    {
+        if (isTouchingTheGround())
+        {
+            myRigidbody.linearVelocity += new Vector2(0, jumpSpeed);
+        }
+    }
+
+    bool isTouchingTheGround(){
+        return myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platforms"));
     }
 }
