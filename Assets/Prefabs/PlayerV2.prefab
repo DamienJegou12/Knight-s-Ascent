@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpSpeed: 7
+  climbSpeed: 10
 --- !u!70 &8094703951104363297
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -257,7 +258,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0043806285, y: -0.1851168}
+  m_Offset: {x: 0.00603389, y: -0.1851168}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -267,5 +268,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.1993356, y: 0.024288595}
+  m_Size: {x: 0.14501406, y: 0.024288595}
   m_EdgeRadius: 0

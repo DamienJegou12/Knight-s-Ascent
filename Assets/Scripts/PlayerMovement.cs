@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipSprite();
+        ClimbLadder();
     }
 
     void OnMove(InputValue value)
@@ -80,11 +81,14 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        if (!isTouchingLadder()) { return; }
+        if (!isTouchingLadder()) { 
+            myRigidbody.gravityScale = 1.5f;
+            return;
+        }
         float climbSpeed = moveInput.y * this.climbSpeed;
         myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, climbSpeed);
         myRigidbody.gravityScale = 0f;
-        myAnimator.SetBool("isClimbing", Mathf.Abs(climbSpeed) > Mathf.Epsilon);
+        // myAnimator.SetBool("isClimbing", Mathf.Abs(climbSpeed) > Mathf.Epsilon);
     }
 
 }
