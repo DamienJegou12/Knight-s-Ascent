@@ -35,14 +35,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Run()
     {
-        if(moveInput.x != 1 && moveInput.x != -1)
+        if(Mathf.Abs(moveInput.x) < Mathf.Epsilon)
         {
-            myRigidbody.linearVelocity = Vector2.zero; // Stop horizontal movement when no input
+            myRigidbody.linearVelocity = new Vector2(0, myRigidbody.linearVelocity.y);
             myAnimator.SetBool("isRunning", false);
             return;
         }
         myAnimator.SetBool("isRunning", true);
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, 0); // Adjust the speed as needed
+        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidbody.linearVelocity.y); 
         myRigidbody.linearVelocity = playerVelocity;
     }
 
@@ -55,11 +55,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Jump()
+    void OnJump(InputValue value)
     {
+        if (!value.isPressed) { return; }
+        Debug.Log("Jump Input: " + value);
         if (isTouchingTheGround())
         {
             myRigidbody.linearVelocity += new Vector2(0, jumpSpeed);
+            Debug.Log("Jumping with velocity: " + myRigidbody.linearVelocity);
         }
     }
 
