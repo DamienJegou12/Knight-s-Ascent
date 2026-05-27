@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator myAnimator;
     private BoxCollider2D myFeetCollider;
     private CapsuleCollider2D myBodyCollider;
+    private bool isClimbing = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -81,13 +82,28 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        if (!isTouchingLadder()) { 
+        if (!isTouchingLadder()) {
+            if(isClimbing)
+            {
+                if (moveInput.y > 0) 
+                {
+                    // Ajuste cette valeur (ex: 1f ou 2f) selon la hauteur de ta marche
+                    myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, 2f); 
+                }
+                else
+                {
+                    myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, 0f);
+                }
+                isClimbing = false;
+                // myAnimator.SetBool("isClimbing", false);
+            }
             myRigidbody.gravityScale = 1.5f;
             return;
         }
         float climbSpeed = moveInput.y * this.climbSpeed;
         myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, climbSpeed);
         myRigidbody.gravityScale = 0f;
+        isClimbing = Mathf.Abs(climbSpeed) > Mathf.Epsilon;
         // myAnimator.SetBool("isClimbing", Mathf.Abs(climbSpeed) > Mathf.Epsilon);
     }
 
