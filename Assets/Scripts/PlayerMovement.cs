@@ -7,10 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10f;
     [SerializeField]
     public float jumpSpeed = 10f;
+    [SerializeField]
+    public float climbSpeed = 10f;
     private Vector2 moveInput;
     private Rigidbody2D myRigidbody;
     private Animator myAnimator;
     private BoxCollider2D myFeetCollider;
+    private CapsuleCollider2D myBodyCollider;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -69,4 +73,18 @@ public class PlayerMovement : MonoBehaviour
     bool isTouchingTheGround(){
         return myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Platforms"));
     }
+
+    bool isTouchingLadder(){
+        return myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladders"));
+    }
+
+    void ClimbLadder()
+    {
+        if (!isTouchingLadder()) { return; }
+        float climbSpeed = moveInput.y * this.climbSpeed;
+        myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, climbSpeed);
+        myRigidbody.gravityScale = 0f;
+        myAnimator.SetBool("isClimbing", Mathf.Abs(climbSpeed) > Mathf.Epsilon);
+    }
+
 }
