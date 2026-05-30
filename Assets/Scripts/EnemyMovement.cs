@@ -16,18 +16,16 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         myRigidbody.linearVelocity = new Vector2(moveSpeed * (isFacingRight ? 1 : -1), 0);
+        FlipEnnemyFacing();
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "platforms")
-        {
-            isFacingRight = !isFacingRight;
-        }
+        isFacingRight = !isFacingRight;
     }
 
     void FlipEnnemyFacing()
     {
-        transform.localScale = new Vector2(Mathf.Sign(myRigidbody.linearVelocity.x) * 1f, 1f);
+        transform.localScale = new Vector2((isFacingRight ? -1f : 1f), 1f);
     }
 }
