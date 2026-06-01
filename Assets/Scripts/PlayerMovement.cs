@@ -1,16 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     public float moveSpeed = 10f;
     [SerializeField]
-    public float jumpSpeed = 10f;
+    public float jumpSpeed = 7f;
     [SerializeField]
     public float climbSpeed = 10f;
     [SerializeField]
     public bool isAlive = true;
+    [SerializeField]
+    public float deathKick = 5f;
+    [SerializeField]
+    public CinemachineStateDrivenCamera stateDrivenCamera;
     private Vector2 moveInput;
     private Rigidbody2D myRigidbody;
     private Animator myAnimator;
@@ -122,9 +127,10 @@ public class PlayerMovement : MonoBehaviour
         }
         isAlive = false;
         myAnimator.SetTrigger("Dying");
-        myRigidbody.linearVelocity = Vector2.zero;
-        // myBodyCollider.enabled = false;
+        myRigidbody.linearVelocity = new Vector2(0f, deathKick);
+        myBodyCollider.enabled = false;
         myFeetCollider.enabled = false;
+        stateDrivenCamera.enabled = false;
     }
 
 }
