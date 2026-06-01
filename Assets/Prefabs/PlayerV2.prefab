@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1032020489989511090}
   m_Layer: 3
   m_Name: PlayerV2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   moveSpeed: 10
   jumpSpeed: 7
   climbSpeed: 10
+  isAlive: 1
 --- !u!70 &8094703951104363297
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -254,11 +255,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00603389, y: -0.1851168}
+  m_Offset: {x: 0.00603389, y: -0.18597105}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -268,5 +269,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.14501406, y: 0.024288595}
+  m_Size: {x: 0.14501406, y: 0.025997102}
   m_EdgeRadius: 0

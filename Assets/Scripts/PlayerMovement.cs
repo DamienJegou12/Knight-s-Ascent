@@ -1,14 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     public float moveSpeed = 10f;
     [SerializeField]
-    public float jumpSpeed = 10f;
+    public float jumpSpeed = 7f;
     [SerializeField]
     public float climbSpeed = 10f;
+    [SerializeField]
+    public bool isAlive = true;
+    [SerializeField]
+    public float deathKick = 5f;
+    [SerializeField]
+    public CinemachineStateDrivenCamera stateDrivenCamera;
     private Vector2 moveInput;
     private Rigidbody2D myRigidbody;
     private Animator myAnimator;
@@ -28,15 +35,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) { 
+            myRigidbody.linearVelocity = Vector2.zero;
+            return;
+        }
         Run();
         FlipSprite();
         ClimbLadder();
+        EnnemiCollision();
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        Debug.Log("Move Input: " + moveInput);
+        // Debug.Log("Move Input: " + moveInput);
     }
 
     void Run()
@@ -105,6 +117,38 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.gravityScale = 0f;
         isClimbing = Mathf.Abs(climbSpeed) > Mathf.Epsilon;
         // myAnimator.SetBool("isClimbing", Mathf.Abs(climbSpeed) > Mathf.Epsilon);
+    }
+
+    void EnnemiCollision()
+    {
+        if (!myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ennemi")))
+        {
+            return;
+        }
+        Die();
+    }
+    public void Die()
+    {
+        isAlive = false;
+        myAnimator.SetTrigger("Dying");
+        myRigidbody.linearVelocity = new Vector2(0f, deathKick);
+        myBodyCollider.enabled = false;
+        myFeetCollider.enabled = false;
+        stateDrivenCamera.enabled = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Water")))
+        {
+            Debug.Log("Entered water trigger " + other.gameObject.name);
+            Die();
+        }
+        // Debug.Log("Entered water trigger " + other.gameObject.name);
+        if(myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")) && Mathf.Abs(myRigidbody.linearVelocity.y) > 0.1f)
+        {
+            Debug.Log("Entered spikes trigger " + other.gameObject.name + " with velocity " + myRigidbody.linearVelocity);
+            Die();
+        }
     }
 
 }
