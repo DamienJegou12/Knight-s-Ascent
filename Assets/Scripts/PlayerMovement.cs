@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
         ClimbLadder();
-        Die();
+        EnnemiCollision();
     }
 
     void OnMove(InputValue value)
@@ -119,18 +119,36 @@ public class PlayerMovement : MonoBehaviour
         // myAnimator.SetBool("isClimbing", Mathf.Abs(climbSpeed) > Mathf.Epsilon);
     }
 
-    void Die()
+    void EnnemiCollision()
     {
-        if (!myRigidbody.IsTouchingLayers(LayerMask.GetMask("Ennemi")))
+        if (!myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Ennemi")))
         {
             return;
         }
+        Die();
+    }
+    public void Die()
+    {
         isAlive = false;
         myAnimator.SetTrigger("Dying");
         myRigidbody.linearVelocity = new Vector2(0f, deathKick);
         myBodyCollider.enabled = false;
         myFeetCollider.enabled = false;
         stateDrivenCamera.enabled = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Water")))
+        {
+            Debug.Log("Entered water trigger " + other.gameObject.name);
+            Die();
+        }
+        // Debug.Log("Entered water trigger " + other.gameObject.name);
+        if(myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")) && Mathf.Abs(myRigidbody.linearVelocity.y) > 0.1f)
+        {
+            Debug.Log("Entered spikes trigger " + other.gameObject.name + " with velocity " + myRigidbody.linearVelocity);
+            Die();
+        }
     }
 
 }

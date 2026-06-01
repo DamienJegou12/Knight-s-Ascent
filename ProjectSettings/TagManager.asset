@@ -15,7 +15,7 @@ TagManager:
   - Background
   - Ladders
   - Ennemi
-  - 
+  - Spikes
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Ladders
     uniqueID: 437683235
+    locked: 0
+  - name: Spikes
+    uniqueID: 3057679849
     locked: 0
   - name: Player
     uniqueID: 3660616543
