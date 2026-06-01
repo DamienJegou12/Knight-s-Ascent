@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) { 
+            myRigidbody.linearVelocity = Vector2.zero;
+            return;
+        }
         Run();
         FlipSprite();
         ClimbLadder();
@@ -119,8 +123,7 @@ public class PlayerMovement : MonoBehaviour
         isAlive = false;
         myAnimator.SetTrigger("Dying");
         myRigidbody.linearVelocity = Vector2.zero;
-        myRigidbody.bodyType = RigidbodyType2D.Kinematic;
-        myBodyCollider.enabled = false;
+        // myBodyCollider.enabled = false;
         myFeetCollider.enabled = false;
     }
 

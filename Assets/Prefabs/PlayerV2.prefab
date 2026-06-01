@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1032020489989511090}
   m_Layer: 3
   m_Name: PlayerV2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   moveSpeed: 10
   jumpSpeed: 7
   climbSpeed: 10
+  isAlive: 1
 --- !u!70 &8094703951104363297
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
