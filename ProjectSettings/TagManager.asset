@@ -16,7 +16,7 @@ TagManager:
   - Ladders
   - Ennemi
   - Spikes
-  - 
+  - Doors
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Spikes
     uniqueID: 3057679849
+    locked: 0
+  - name: Doors
+    uniqueID: 797313007
     locked: 0
   - name: Player
     uniqueID: 3660616543
