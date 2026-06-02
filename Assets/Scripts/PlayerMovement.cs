@@ -152,4 +152,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // void OnAttack(InputValue value)
+    // {
+    //     if (!value.isPressed) { return; }
+    //     Debug.Log("Attack Input: " + value);
+    //     myAnimator.SetTrigger("Attack");
+    // }
+
 }
