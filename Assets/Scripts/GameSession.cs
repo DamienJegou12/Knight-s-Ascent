@@ -44,6 +44,7 @@ public class GameSession : MonoBehaviour
     void TakeLife()
     {
         playerLives--;
+        Invoke("ResetLevel", 1f);
     }
 
     void ResetLevel()
@@ -51,7 +52,7 @@ public class GameSession : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Destroy(gameObject);
     }
-    
+
     void ResetGameSession()
     {
         SceneManager.LoadScene(0);
