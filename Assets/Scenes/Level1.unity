@@ -448,7 +448,7 @@ MonoBehaviour:
       CustomLookAtTarget: 0
   DefaultBlend:
     Style: 1
-    Time: 0
+    Time: 3
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -477,6 +477,8 @@ MonoBehaviour:
   - Hash: 1432961145
     HashOfParent: 756556552
   - Hash: -725336713
+    HashOfParent: 756556552
+  - Hash: -1546996312
     HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
@@ -1948,6 +1950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7b32260583b8246aee5786ec73c271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLoadDelay: 1
 --- !u!1001 &1350552647
 PrefabInstance:
   m_ObjectHideFlags: 0
