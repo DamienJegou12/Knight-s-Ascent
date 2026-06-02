@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         myBodyCollider.enabled = false;
         myFeetCollider.enabled = false;
         stateDrivenCamera.enabled = false;
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].ProcessPlayerDeath();
     }
 
     void OnTriggerEnter2D(Collider2D other) {

@@ -1,7 +1,10 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
+    [SerializeField]
+    private int playerLives = 3;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,5 +27,34 @@ public class GameSession : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void ProcessPlayerDeath()
+    {
+        if(playerLives > 1)
+        {
+            TakeLife();
+        }
+        else
+        {
+            Invoke("ResetGameSession", 1f);
+        }
+    }
+
+    void TakeLife()
+    {
+        playerLives--;
+    }
+
+    void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Destroy(gameObject);
+    }
+    
+    void ResetGameSession()
+    {
+        SceneManager.LoadScene(0);
+        Destroy(gameObject);
     }
 }
