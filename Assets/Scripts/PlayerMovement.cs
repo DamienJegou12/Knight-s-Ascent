@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D myFeetCollider;
     private CapsuleCollider2D myBodyCollider;
     private bool isClimbing = false;
+    private bool isJumping = false;
+    private bool isJumpingDown = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         ClimbLadder();
         EnnemiCollision();
+        StatusJump();
     }
 
     void OnMove(InputValue value)
@@ -79,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Jump Input: " + value);
         if (isTouchingTheGround())
         {
+            isJumping = true;
+            myAnimator.SetTrigger("Jump");
             myRigidbody.linearVelocity += new Vector2(0, jumpSpeed);
             Debug.Log("Jumping with velocity: " + myRigidbody.linearVelocity);
         }
@@ -152,11 +157,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // void OnAttack(InputValue value)
-    // {
-    //     if (!value.isPressed) { return; }
-    //     Debug.Log("Attack Input: " + value);
-    //     myAnimator.SetTrigger("Attack");
-    // }
+    void StatusJump()
+    {
+        if(isJumping && myRigidbody.linearVelocity.y < 0.1f)
+        {
+            isJumping = false;
+            isJumpingDown = true;
+            myAnimator.SetTrigger("Jump Down");
+        }
+        if(isJumpingDown && isTouchingTheGround())
+        {
+            isJumpingDown = false;
+            myAnimator.SetTrigger("onGround");
+        }
+    }
 
 }
