@@ -53,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
             estEnTrainDAttaquer = true;
             etapeCombo = 1;
             tempsDerniereAttaque = 0f;
-            anim.SetTrigger("Attaque_1");
+            anim.SetTrigger("Attack");
         }
         else if (etapeCombo == 1 && tempsDerniereAttaque < delaiMaximumCombo)
         {
@@ -88,7 +88,7 @@ public class PlayerCombat : MonoBehaviour
             // Le joueur a recliqué : on lance la deuxième attaque
             etapeCombo = 2;
             veutEnchainer = false;
-            anim.SetTrigger("Attaque_2");
+            anim.SetTrigger("Attack 2");
         }
     }
 

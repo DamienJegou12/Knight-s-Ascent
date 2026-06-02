@@ -287,6 +287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2bf916b57d70f4fb91eeccd87fb36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  degats: 10
+  delaiMaximumCombo: 0.6
+  pointDAttaque: {fileID: 784343504745835340}
+  rayonAttaque: 0.5
+  layerEnnemi:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1270870734341256882
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 784343504745835340}
   m_Layer: 3
-  m_Name: GameObject
+  m_Name: Point Attaque
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
