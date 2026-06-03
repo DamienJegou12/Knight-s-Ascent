@@ -47,6 +47,7 @@ public class PlayerCombat : MonoBehaviour
 
     void GererInputAttaque()
     {
+        if(GetComponent<PlayerMovement>().isAlive == false) { return; }
         if (!estEnTrainDAttaquer)
         {
             // Début de la première attaque

@@ -17,7 +17,7 @@ TagManager:
   - Ennemi
   - Spikes
   - Interactables
-  - 
+  - Pickups
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3660616543
+    locked: 0
+  - name: Pickups
+    uniqueID: 2597519951
     locked: 0
   m_RenderingLayers:
   - Default
