@@ -71,13 +71,13 @@ public class PlayerCombat : MonoBehaviour
     {
         // Crée un cercle invisible pour détecter tout ce qui s'y trouve
         Collider2D[] ennemisTouches = Physics2D.OverlapCircleAll(pointDAttaque.position, rayonAttaque, layerEnnemi);
-
+        Debug.Log("Ennemis touchés : " + ennemisTouches.Length);
         // Applique les dégâts à chaque ennemi touché
-        // foreach (Collider2D ennemi in ennemisTouches)
-        // {
-        //     // On appelle le script de l'ennemi (à adapter selon le nom de ton script)
-        //     // ennemi.GetComponent<ScriptEnnemi>().PrendreDegats(degats);
-        // }
+        foreach (Collider2D ennemi in ennemisTouches)
+        {
+            // On appelle le script de l'ennemi (à adapter selon le nom de ton script)
+            ennemi.GetComponent<Enemy>().TakeDamage(degats);
+        }
     }
 
     // À placer vers la fin de l'animation "Attaque_1"

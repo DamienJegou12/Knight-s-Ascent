@@ -290,10 +290,10 @@ MonoBehaviour:
   degats: 10
   delaiMaximumCombo: 0.6
   pointDAttaque: {fileID: 784343504745835340}
-  rayonAttaque: 0.5
+  rayonAttaque: 0.7
   layerEnnemi:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 520
 --- !u!1 &1270870734341256882
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 1270870734341256882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.164, y: -0.025, z: 0.002001499}
+  m_LocalPosition: {x: 0.1684, y: -0.0621, z: 0.002001499}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
