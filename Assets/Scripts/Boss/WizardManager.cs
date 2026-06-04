@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class WizardManager : Enemy
 {
-    public GameObject fireballPrefab;
-    public float fireballSpeed = 5f;
+    
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,5 +15,10 @@ public class WizardManager : Enemy
     void Update()
     {
         
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 }
