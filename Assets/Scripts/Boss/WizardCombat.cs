@@ -10,8 +10,8 @@ public class WizardCombat : MonoBehaviour
     private float FireballCooldown = 5f;
     private float ThunderCooldown = 15f;
 
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created s
     void Start()
     {
         
