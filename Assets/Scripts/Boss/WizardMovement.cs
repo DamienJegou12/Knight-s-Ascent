@@ -18,6 +18,15 @@ public class WizardMovement : MonoBehaviour
     private bool isDashing = false;
     private Vector3 targetDashPosition;
 
+    private Animator animator;
+
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+
     void Update()
     {
         if (isDashing)
@@ -59,6 +68,7 @@ public class WizardMovement : MonoBehaviour
 
     private void StartDash()
     {
+        animator.SetTrigger("Dash");
         isDashing = true;
         lastDashTime = Time.time;
         int direction = transform.position.x < player.position.x ? -1 : 1;
@@ -74,16 +84,16 @@ public class WizardMovement : MonoBehaviour
     private void PerformDash()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetDashPosition, dashSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, targetDashPosition) < 0.1f)
-        {
-            isDashing = false;
-        }
     }
 
     private void FlipSprite(int direction)
     {
         // Optionnel : tourne le sprite pour regarder le joueur (le boss regarde vers le joueur même en fuyant)
         transform.localScale = new Vector3(-direction, 1, 1); 
+    }
+
+    public void EndDash()
+    {
+        isDashing = false;
     }
 }
