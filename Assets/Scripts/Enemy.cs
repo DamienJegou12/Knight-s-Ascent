@@ -4,11 +4,12 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     public int health = 10;
+    private LootBag lootBag;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        lootBag = GetComponent<LootBag>();
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        lootBag.InstantiateLoot(transform.position);
         Destroy(gameObject);
     }
 }
