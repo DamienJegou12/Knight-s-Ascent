@@ -6,9 +6,12 @@ public class LightningBolt : MonoBehaviour
 {
     [Header("Combat")]
     public int damage = 6;
+    public int speed = 10;
 
-    public Ieffet effectOnHitPrefab;
-    public int effectStacks = 1;
+
+    // public Ieffet effectOnHitPrefab;
+    // public int effectStacks = 1;
+    private Rigidbody2D rb;
     
     // On garde la variable privée car on va la remplir automatiquement
     private CapsuleCollider2D myCollider;
@@ -17,11 +20,17 @@ public class LightningBolt : MonoBehaviour
     {
         // 1. On récupère le collider qui est sur le MÊME objet que ce script
         myCollider = GetComponent<CapsuleCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
 
         if (myCollider == null)
         {
             Debug.LogError("Attention : Il manque un CapsuleCollider2D sur l'éclair !");
         }
+    }
+
+    void Update()
+    {
+        rb.linearVelocity = new Vector2(0, -speed); 
     }
 
     // ---------------------------------------------------------
@@ -40,29 +49,19 @@ public class LightningBolt : MonoBehaviour
 
         // Cette liste sert à se souvenir des entités déjà touchées PAR CET ÉCLAIR PRÉCIS
         // (Utile si un ennemi a 2 colliders, ex: corps + tête, pour ne pas prendre 2x les dégâts)
-        HashSet<Entity> damagedEntitiesGeneral = new HashSet<Entity>();
+        HashSet<Player> damagedEntitiesGeneral = new HashSet<Player>();
 
         foreach (Collider2D hit in hits)
         {
             
 
             // On essaie de récupérer le script Entity sur l'objet touché
-            Entity entity = hit.gameObject.GetComponent<Entity>();
+            Player entity = hit.gameObject.GetComponent<Player>();
             // SI c'est une entité ET qu'on ne l'a pas encore blessée dans cette boucle
             if (entity != null && !damagedEntitiesGeneral.Contains(entity))
             {
                 // On applique les dégâts
-                entity.dealDammage(damage);
-                
-                if (effectOnHitPrefab != null)
-                {
-                    var manager = entity.gameObject.GetComponent<effetManager>();
-                    if (manager != null)
-                    {
-                        manager.AddEffect(effectOnHitPrefab, effectStacks);
-                        Debug.Log($"[BULLET] {entity.gameObject.name} reçoit l'effet '{effectOnHitPrefab.nom}' x{effectStacks} (projectile)");
-                    }
-                }
+                entity.TakeDamage(damage);
 
                 // On l'ajoute à la liste "Déjà touché"
                 damagedEntitiesGeneral.Add(entity);
