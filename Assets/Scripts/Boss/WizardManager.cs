@@ -63,4 +63,9 @@ public class WizardManager : Enemy
         // Ajouter ici les animations de mort, loot, etc.
         Destroy(gameObject);
     }
+
+    public int GetMaxLightningCount()
+    {
+        return combatScript.GetMaxLightningCount();
+    }
 }

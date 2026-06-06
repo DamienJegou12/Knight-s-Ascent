@@ -13,6 +13,11 @@ public class WizardCombat : MonoBehaviour
     public GameObject lightningPrefab;
     public GameObject meteorPrefab;
 
+    [Header("Nombre de foudres par phase")]
+    public int maxLightningCountPhase1 = 3;
+    public int maxLightningCountPhase2 = 5;
+    public int maxLightningCountPhase3 = 8;
+
     private WizardManager.BossPhase currentPhase;
     private float nextAttackTime = 0f;
 
@@ -96,6 +101,22 @@ public class WizardCombat : MonoBehaviour
             Vector3 meteorPos = new Vector3(randomX, player.position.y + 10f, 0);
             // Instantiate(meteorPrefab, meteorPos, Quaternion.identity);
             yield return new WaitForSeconds(0.3f); // Délai entre chaque météore
+        }
+    }
+
+    public int GetMaxLightningCount()
+    {
+        // Retourne un nombre de foudres maximum basé sur la phase actuelle
+        switch (currentPhase)
+        {
+            case WizardManager.BossPhase.Phase1:
+                return maxLightningCountPhase1;
+            case WizardManager.BossPhase.Phase2:
+                return maxLightningCountPhase2;
+            case WizardManager.BossPhase.Phase3:
+                return maxLightningCountPhase3;
+            default:
+                return maxLightningCountPhase1;
         }
     }
 }
