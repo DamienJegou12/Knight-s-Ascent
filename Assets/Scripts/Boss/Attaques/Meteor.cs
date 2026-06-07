@@ -19,7 +19,6 @@ public class Meteor : MonoBehaviour
     private CircleCollider2D explosionRadius;
     private GameObject activeWarning;
 
-    public CameraShake cam;
 
     void Awake()
     {
@@ -45,7 +44,6 @@ public class Meteor : MonoBehaviour
         {
             activeWarning = Instantiate(warningPrefab, targetPosition, Quaternion.identity);
         }
-        if (cam == null) cam = Camera.main.GetComponent<CameraShake>(); // Assure que la caméra principale est assignée
     }
 
     void Update()
@@ -81,11 +79,6 @@ public class Meteor : MonoBehaviour
             Explode();
             OnAnimationFinish();
         }
-        Debug.Log("shake");
-        if (cam != null)
-        {
-            cam.TriggerShake(0.10f, 0.1f);
-        }
     }
 
     // ---------------------------------------------------------
@@ -102,24 +95,24 @@ public class Meteor : MonoBehaviour
         explosionRadius.Overlap(new ContactFilter2D().NoFilter(), hits);
         
         // Pour éviter d'infliger des dégâts multiples à la même entité on prepare une liste
-        HashSet<Entity> damagedEntitiesGeneral = new HashSet<Entity>();
+        // HashSet<Entity> damagedEntitiesGeneral = new HashSet<Entity>();
 
-        foreach (Collider2D hit in hits)
-        {
+        // foreach (Collider2D hit in hits)
+        // {
             
-            Entity entity = hit.gameObject.GetComponent<Entity>();
-            // SI c'est une entité ET qu'on ne l'a pas encore blessée dans cette boucle
-            if (entity != null && !damagedEntitiesGeneral.Contains(entity))
-            {
-                // On applique les dégâts
-                entity.dealDammage(damage);
+        //     Entity entity = hit.gameObject.GetComponent<Entity>();
+        //     // SI c'est une entité ET qu'on ne l'a pas encore blessée dans cette boucle
+        //     if (entity != null && !damagedEntitiesGeneral.Contains(entity))
+        //     {
+        //         // On applique les dégâts
+        //         entity.dealDammage(damage);
                 
                 
 
-                // On l'ajoute à la liste "Déjà touché"
-                damagedEntitiesGeneral.Add(entity);
-            }
-        }
+        //         // On l'ajoute à la liste "Déjà touché"
+        //         damagedEntitiesGeneral.Add(entity);
+        //     }
+        // }
     }
 
     // Placer cet event à la toute fin de l'animation
