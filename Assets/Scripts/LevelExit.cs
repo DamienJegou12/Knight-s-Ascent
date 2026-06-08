@@ -26,6 +26,11 @@ public class LevelExit : MonoBehaviour
 
     void LoadNextLevel()
     {
+        GameSession gameSession = FindAnyObjectByType<GameSession>();
+        if(gameSession != null)
+        {
+            gameSession.SaveCoins();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

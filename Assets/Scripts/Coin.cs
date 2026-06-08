@@ -37,8 +37,11 @@ public class Coin : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Player")
         {
-            // Ici, tu peux ajouter du code pour augmenter le score du joueur
-            // Par exemple : other.GetComponent<PlayerScore>().AddScore(value);
+            GameSession gameSession = FindAnyObjectByType<GameSession>();
+            if(gameSession != null)
+            {
+                gameSession.AddCoins(value);
+            }
             Destroy(gameObject); // Détruit la pièce après l'avoir ramassée
         }
     }

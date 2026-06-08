@@ -1,14 +1,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class GameSession : MonoBehaviour
 {
     [SerializeField]
     private int playerLives = 3;
+    [SerializeField]
+    private int coins = 0;
+    [SerializeField]
+    private int currentCoins = 0;
+    [Header("UI")]
+    [SerializeField]
+    TextMeshProUGUI livesText;
+    [SerializeField]
+    TextMeshProUGUI coinsText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        livesText.text = "Lives : " + playerLives.ToString();
+        coinsText.text = "Coins : " + coins.ToString();
     }
 
     // Update is called once per frame
@@ -44,6 +56,9 @@ public class GameSession : MonoBehaviour
     void TakeLife()
     {
         playerLives--;
+        livesText.text = "Lives : " + playerLives.ToString();
+        currentCoins = coins;
+        coinsText.text = "Coins : " + currentCoins.ToString();
         Invoke("ResetLevel", 1f);
     }
 
@@ -57,5 +72,16 @@ public class GameSession : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Destroy(gameObject);
+    }
+
+    public void AddCoins(int amount)
+    {
+        currentCoins += amount;
+        coinsText.text = "Coins : " + currentCoins.ToString();
+    }
+
+    public void SaveCoins()
+    {
+        coins = currentCoins;
     }
 }
