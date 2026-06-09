@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,19 @@ public class PlayerMovement : MonoBehaviour
     public float deathKick = 5f;
     [SerializeField]
     public CinemachineStateDrivenCamera stateDrivenCamera;
+    [Header("Paramètres du Dash")]
+    public float dashForce = 25f;       // Va loin et vite
+    public float dashDuration = 0.2f;   // Temps du dash
+    public float dashCooldown = 2f;     // Cooldown plus long
+    private bool canDash = true;
+    private bool isDashing = false;
+
+    [Header("Paramètres du Roll")]
+    public float rollForce = 12f;       // Moins loin que le dash
+    public float rollDuration = 0.35f;  // Dure un peu plus longtemps (ou au choix)
+    public float rollCooldown = 0.8f;   // Cooldown plus court
+    private bool canRoll = true;
+    private bool isRolling = false;
     private Vector2 moveInput;
     private Rigidbody2D myRigidbody;
     private Animator myAnimator;
@@ -130,6 +144,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        if(GetComponent<Player>().IsInvulnerable())
+        {
+            return;
+        }
         Die();
     }
     public void Die()
@@ -172,4 +190,44 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void Dash()
+    {
+        // Implémente la logique de dash ici
+    }
+
+    void Roll()
+    {
+        if (isRolling) return; // Empêche de roll si déjà en train de roll
+        if (!canRoll) return; // Empêche de roll si en cooldown
+        isRolling = true;
+        canRoll = false;
+    }
+
+    void EndRoll()
+    {
+        isRolling = false;
+        myAnimator.SetBool("isRolling", false);
+        StartCoroutine(RollCooldownRoutine());
+        GetComponent<Player>().makeInvulnerable(false);
+    }
+
+    private void StartRoll()
+    {
+        canRoll = false;
+        isRolling = true;
+        // isInvincible = true;
+
+        // On lance l'animation de roulade (assure-toi d'avoir un trigger "Roll" dans ton Animator)
+        // anim.SetTrigger("Roll");
+
+        // On applique la force initiale (et on respecte la gravité)
+        // rb.velocity = new Vector2(facingDirection * rollForce, rb.velocity.y);
+    }
+
+
+    private IEnumerator RollCooldownRoutine()
+    {
+        yield return new WaitForSeconds(rollCooldown);
+        canRoll = true;
+    }
 }

@@ -77,7 +77,11 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D ennemi in ennemisTouches)
         {
             // On appelle le script de l'ennemi (à adapter selon le nom de ton script)
-            ennemi.GetComponent<Enemy>().TakeDamage(degats);
+            Enemy ennemiScript = ennemi.GetComponent<Enemy>();
+            if (ennemiScript != null)
+            {
+                ennemiScript.TakeDamage(degats);
+            }
         }
     }
 
