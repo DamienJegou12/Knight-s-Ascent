@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4524139784596735486}
   - component: {fileID: 1032020489989511090}
   - component: {fileID: 2131833169191782666}
+  - component: {fileID: 1367263845486239454}
   m_Layer: 3
   m_Name: PlayerV2
   m_TagString: Player
@@ -165,6 +166,12 @@ MonoBehaviour:
   isAlive: 1
   deathKick: 5
   stateDrivenCamera: {fileID: 0}
+  dashForce: 25
+  dashDuration: 0.2
+  dashCooldown: 2
+  rollForce: 12
+  rollDuration: 0.35
+  rollCooldown: 0.8
 --- !u!70 &8094703951104363297
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -294,6 +301,21 @@ MonoBehaviour:
   layerEnnemi:
     serializedVersion: 2
     m_Bits: 520
+--- !u!114 &1367263845486239454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41987029655579628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7058f7655726e4d8de1e2c0259de28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  isInvulnerable: 0
 --- !u!1 &1270870734341256882
 GameObject:
   m_ObjectHideFlags: 0

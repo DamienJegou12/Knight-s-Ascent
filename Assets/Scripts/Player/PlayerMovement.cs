@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isClimbing = false;
     private bool isJumping = false;
     private bool isJumpingDown = false;
+    private bool isFacingRight = true;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
             myRigidbody.linearVelocity = Vector2.zero;
             return;
         }
+        if (isRolling) { return; }
+        if (isDashing) { return; }
         Run();
         FlipSprite();
         ClimbLadder();
@@ -86,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.linearVelocity.x) > Mathf.Epsilon;
         if (playerHasHorizontalSpeed)
         {
+            isFacingRight = myRigidbody.linearVelocity.x > 0;
             transform.localScale = new Vector2(Mathf.Sign(myRigidbody.linearVelocity.x) * 5f, 5f);
         }
     }
@@ -195,12 +199,15 @@ public class PlayerMovement : MonoBehaviour
         // Implémente la logique de dash ici
     }
 
-    void Roll()
+    void OnRoll()
     {
         if (isRolling) return; // Empêche de roll si déjà en train de roll
         if (!canRoll) return; // Empêche de roll si en cooldown
         isRolling = true;
         canRoll = false;
+        myAnimator.SetBool("isRolling", true);
+        GetComponent<Player>().makeInvulnerable(true);
+        myRigidbody.linearVelocity = new Vector2((isFacingRight ? 1 : -1) * rollForce, myRigidbody.linearVelocity.y);
     }
 
     void EndRoll()
