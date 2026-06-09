@@ -39,6 +39,8 @@ public class GameSession : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+        livesText.text = "Lives : " + playerLives.ToString();
+        coinsText.text = "Coins : " + coins.ToString();
     }
 
     public void ProcessPlayerDeath()
