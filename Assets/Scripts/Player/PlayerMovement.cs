@@ -57,7 +57,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         if (isRolling) { return; }
-        if (isDashing) { return; }
+        if (isDashing) { 
+            Debug.Log("Currently dashing, skipping movement update.");
+            return;
+        }
         Run();
         FlipSprite();
         ClimbLadder();
@@ -194,9 +197,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Dash()
+    void OnDash()
     {
-        // Implémente la logique de dash ici
+        if (isDashing) return; // Empêche de dash si déjà en train de dash
+        if (!canDash) return; // Empêche de dash si en cooldown
+        myAnimator.SetBool("isDashing",true);
+        StartCoroutine(Dash());
     }
 
     void OnRoll()
@@ -236,5 +242,22 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(rollCooldown);
         canRoll = true;
+    }
+
+    private IEnumerator Dash()
+    {
+        // (Le code du dash reste exactement le même que précédemment)
+        canDash = false;
+        isDashing = true;
+        GetComponent<Player>().makeInvulnerable(true);
+        myRigidbody.gravityScale = 0f; 
+        myRigidbody.linearVelocity = new Vector2((isFacingRight ? 1 : -1) * dashForce, 0f);
+        yield return new WaitForSeconds(dashDuration);
+        myAnimator.SetBool("isDashing",false);
+        myRigidbody.gravityScale = 1.5f;
+        isDashing = false;
+        GetComponent<Player>().makeInvulnerable(false);
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }

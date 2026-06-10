@@ -166,7 +166,7 @@ MonoBehaviour:
   isAlive: 1
   deathKick: 5
   stateDrivenCamera: {fileID: 0}
-  dashForce: 25
+  dashForce: 50
   dashDuration: 0.2
   dashCooldown: 2
   rollForce: 12
