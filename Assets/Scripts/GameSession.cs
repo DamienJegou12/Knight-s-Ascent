@@ -72,7 +72,7 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GameOver");
         Destroy(gameObject);
     }
 
@@ -85,5 +85,11 @@ public class GameSession : MonoBehaviour
     public void SaveCoins()
     {
         coins = currentCoins;
+    }
+
+    public void AddLife()
+    {
+        playerLives++;
+        livesText.text = "Lives : " + playerLives.ToString();
     }
 }
