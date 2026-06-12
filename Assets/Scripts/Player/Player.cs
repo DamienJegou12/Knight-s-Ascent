@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (isInvulnerable) return;
 

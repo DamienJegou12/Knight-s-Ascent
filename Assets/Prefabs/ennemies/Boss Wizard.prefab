@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 1000
+  maxHealth: 500
   combatScript: {fileID: 7861510365667113544}
   movementScript: {fileID: 372905663836947666}
   currentPhase: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   attackCooldown: 3
   firePoint: {fileID: 3475195097410913028}
   player: {fileID: 2454110388386016416, guid: 378eb3a9affad5a4c8a2683ff7e91aee, type: 3}
-  fireballPrefab: {fileID: 0}
+  fireballPrefab: {fileID: 3390032616192616155, guid: ce5a703c83c3cd547a5a85be1c858371, type: 3}
   StormControllerPrefab: {fileID: 2359557097080238315, guid: b1ab72f5a2ddcb540b5328d9a6a652c9, type: 3}
   meteorPrefab: {fileID: 0}
   maxLightningCountPhase1: 3

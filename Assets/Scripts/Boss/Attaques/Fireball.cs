@@ -15,12 +15,12 @@ public class Fireball : Bullet
         c1 = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
-        // Lancer l'animation de la boule de feu
-        animator = GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetTrigger("Launch");
-        }
+        // // Lancer l'animation de la boule de feu
+        // animator = GetComponent<Animator>();
+        // if (animator != null)
+        // {
+        //     animator.SetTrigger("Launch");
+        // }
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class Fireball : Bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // V�rifie si l'objet entrant en collision a bien le tag "ennemy"
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
 
             Player Ennemi = collision.gameObject.GetComponent<Player>();

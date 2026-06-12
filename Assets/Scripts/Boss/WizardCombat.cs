@@ -77,7 +77,19 @@ public class WizardCombat : MonoBehaviour
 
     private void CastFireball()
     {
-        Debug.Log("Attaque: Boule de feu !");
+        Debug.Log("Attaque: Boule de feu !, pos player = " + player.position);
+        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
+        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+        Vector2 direction = (player.position - firePoint.position).normalized;
+        Fireball bulletScript = fireball.GetComponent<Fireball>();
+        if (bulletScript != null)
+        {
+            bulletScript.direction = direction;
+        }
+        else
+        {
+            Debug.LogWarning("Le prefab de la boule de feu doit avoir un script 'Fireball' avec une variable 'direction' pour fonctionner correctement.");
+        }
         // Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
         // La logique de déplacement de la boule de feu doit être gérée dans un script sur le prefab
     }

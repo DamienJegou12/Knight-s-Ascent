@@ -710,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1367263845486239454, guid: 378eb3a9affad5a4c8a2683ff7e91aee, type: 3}
       propertyPath: isInvulnerable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2131833169191782666, guid: 378eb3a9affad5a4c8a2683ff7e91aee, type: 3}
       propertyPath: rayonAttaque
@@ -1152,6 +1152,10 @@ PrefabInstance:
     - target: {fileID: 8657610020221272535, guid: 7b0bb017474867643b7941706c990de5, type: 3}
       propertyPath: m_Name
       value: Grenouille
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657610020221272535, guid: 7b0bb017474867643b7941706c990de5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16393,6 +16397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lightning2
       objectReference: {fileID: 0}
+    - target: {fileID: 4485594478730334187, guid: 51608b13bbd8b1e448b0d8f1a73a86a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16463,13 +16471,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 372905663836947666, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 249497464}
     - target: {fileID: 378327780079189193, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70.6934
+      value: 70.5
       objectReference: {fileID: 0}
     - target: {fileID: 378327780079189193, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8523703
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 378327780079189193, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16509,8 +16521,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1218722020945276112, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7861510365667113544, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 249497464}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16568,6 +16584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightningManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2359557097080238315, guid: b1ab72f5a2ddcb540b5328d9a6a652c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16624,6 +16644,10 @@ PrefabInstance:
     - target: {fileID: 3390032616192616155, guid: ce5a703c83c3cd547a5a85be1c858371, type: 3}
       propertyPath: m_Name
       value: Fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390032616192616155, guid: ce5a703c83c3cd547a5a85be1c858371, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16759,6 +16783,10 @@ PrefabInstance:
     - target: {fileID: 1233839270756667250, guid: b842201f7f47c1c41999358986dc4963, type: 3}
       propertyPath: m_Name
       value: Lightning1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233839270756667250, guid: b842201f7f47c1c41999358986dc4963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5605246536367687607, guid: b842201f7f47c1c41999358986dc4963, type: 3}
       propertyPath: m_LocalPosition.x
