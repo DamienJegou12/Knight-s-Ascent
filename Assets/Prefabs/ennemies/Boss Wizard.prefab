@@ -147,8 +147,11 @@ MonoBehaviour:
   firePoint: {fileID: 3475195097410913028}
   player: {fileID: 2454110388386016416, guid: 378eb3a9affad5a4c8a2683ff7e91aee, type: 3}
   fireballPrefab: {fileID: 0}
-  lightningPrefab: {fileID: 0}
+  StormControllerPrefab: {fileID: 2359557097080238315, guid: b1ab72f5a2ddcb540b5328d9a6a652c9, type: 3}
   meteorPrefab: {fileID: 0}
+  maxLightningCountPhase1: 3
+  maxLightningCountPhase2: 5
+  maxLightningCountPhase3: 8
 --- !u!114 &372905663836947666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,9 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67437d74bb76894a8190a3a15dd124f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  leftPlatformEdge: {fileID: 0}
-  rightPlatformEdge: {fileID: 0}
+  player: {fileID: 2454110388386016416, guid: 378eb3a9affad5a4c8a2683ff7e91aee, type: 3}
+  leftPlatformEdge: {fileID: 1431615824767460649, guid: 3e0cc98fa20448d4293725d0f3b28db3, type: 3}
+  rightPlatformEdge: {fileID: 2690308545995884662, guid: 6dce8d2563adbdb49b5169211b00ee16, type: 3}
   moveSpeed: 3
   safeDistance: 8
   dashSpeed: 15

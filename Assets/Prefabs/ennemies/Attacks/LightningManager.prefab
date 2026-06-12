@@ -47,8 +47,8 @@ MonoBehaviour:
   lightningPrefabs:
   - {fileID: 1233839270756667250, guid: b842201f7f47c1c41999358986dc4963, type: 3}
   - {fileID: 4485594478730334187, guid: 51608b13bbd8b1e448b0d8f1a73a86a3, type: 3}
-  wizard: {fileID: 0}
-  playerTransform: {fileID: 0}
+  wizard: {fileID: 8563144025949437711, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+  playerTransform: {fileID: 2454110388386016416, guid: 378eb3a9affad5a4c8a2683ff7e91aee, type: 3}
   spaceBetweenLightnings: 2
   timeBetweenLightnings: 0.2
   spawnHeightOffset: 10

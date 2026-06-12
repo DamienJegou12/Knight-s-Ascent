@@ -10,7 +10,7 @@ public class WizardCombat : MonoBehaviour
 
     [Header("Prefabs de Sorts")]
     public GameObject fireballPrefab;
-    public GameObject lightningPrefab;
+    public GameObject StormControllerPrefab;
     public GameObject meteorPrefab;
 
     [Header("Nombre de foudres par phase")]
@@ -36,7 +36,11 @@ public class WizardCombat : MonoBehaviour
         
         // Optionnel : réduire le cooldown d'attaque quand il s'énerve
         if (phase == WizardManager.BossPhase.Phase2) attackCooldown = 2.5f;
-        if (phase == WizardManager.BossPhase.Phase3) attackCooldown = 1.8f;
+        if (phase == WizardManager.BossPhase.Phase3)
+        {
+            attackCooldown = 1.8f;
+            StopLightning(); // Arrête les foudres en cours si on passe en phase 3 pour éviter les débordements
+        }
     }
 
     private void ExecuteRandomAttack()
@@ -82,8 +86,8 @@ public class WizardCombat : MonoBehaviour
     {
         Debug.Log("Attaque: Éclair du ciel !");
         // On fait apparaitre l'éclair au-dessus de la position actuelle du joueur
-        Vector3 lightningPos = new Vector3(player.position.x, player.position.y + 5f, 0);
-        // Instantiate(lightningPrefab, lightningPos, Quaternion.identity);
+        StormControllerPrefab.GetComponent<StormController>().LaunchLightning();
+        
     }
 
     private void CastMeteorShower()
@@ -118,5 +122,10 @@ public class WizardCombat : MonoBehaviour
             default:
                 return maxLightningCountPhase1;
         }
+    }
+
+    public void StopLightning()
+    {
+        StormControllerPrefab.GetComponent<StormController>().StopStorm();
     }
 }

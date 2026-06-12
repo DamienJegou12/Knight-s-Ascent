@@ -13,7 +13,7 @@ public class StormController : MonoBehaviour
 
     [Header("Paramètres de la Cascade")]
     public float spaceBetweenLightnings = 2.0f; // Distance fixe (en X) entre chaque éclair
-    public float timeBetweenLightnings = 0.2f;  // Temps fixe entre l'apparition de chaque éclair
+        public float timeBetweenLightnings = 0.2f;  // Temps fixe entre l'apparition de chaque éclair
     public float spawnHeightOffset = 10f;       // Hauteur d'apparition au-dessus du sol
 
     private bool isStorming = false;
