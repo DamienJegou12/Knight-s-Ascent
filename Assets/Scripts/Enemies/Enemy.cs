@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    protected int health = 10;
+    private int health = 10;
     private LootBag lootBag;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created

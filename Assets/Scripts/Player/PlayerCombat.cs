@@ -77,6 +77,17 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D ennemi in ennemisTouches)
         {
             // On appelle le script de l'ennemi (à adapter selon le nom de ton script)
+            
+
+            WizardManager wizardManager = ennemi.GetComponent<WizardManager>();
+            // WizardManager wizardManager = ennemi.GetComponentInParent<WizardManager>();
+            Debug.Log("WizardManager script found: " + (wizardManager != null));
+            if (wizardManager != null)
+            {
+                wizardManager.TakeDamage(degats);
+                return;
+            }
+
             Enemy ennemiScript = ennemi.GetComponent<Enemy>();
             if (ennemiScript != null)
             {

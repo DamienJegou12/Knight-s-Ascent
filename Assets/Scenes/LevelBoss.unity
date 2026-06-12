@@ -16527,6 +16527,22 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 249497464}
+    - target: {fileID: 7861510365667113544, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+      propertyPath: attackCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861510365667113544, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+      propertyPath: maxLightningCountPhase1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861510365667113544, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+      propertyPath: maxLightningCountPhase2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861510365667113544, guid: 6995b1513b33d3542afca48aaab888a1, type: 3}
+      propertyPath: maxLightningCountPhase3
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

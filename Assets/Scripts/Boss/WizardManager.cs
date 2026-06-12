@@ -4,8 +4,8 @@ public class WizardManager : Enemy
 {
     
     [Header("Statistiques")]
-    public float maxHealth = 1000f;
-    private float currentHealth;
+    public int maxHealth = 500;
+    public int currentHealth;
 
     [Header("Références")]
     public WizardCombat combatScript;
@@ -23,9 +23,10 @@ public class WizardManager : Enemy
     }
 
     
-    public void TakeDamage(float damage)
+    public new void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("Wizard took " + damage + " damage. Current health: " + currentHealth);
         CheckHealthThresholds();
 
         if (currentHealth <= 0)
@@ -36,7 +37,7 @@ public class WizardManager : Enemy
 
     private void CheckHealthThresholds()
     {
-        float healthPercentage = currentHealth / maxHealth;
+        float healthPercentage = (float)currentHealth / maxHealth;
 
         // Phase 2 à 60% HP, Phase 3 à 30% HP
         if (healthPercentage <= 0.3f && currentPhase != BossPhase.Phase3)
