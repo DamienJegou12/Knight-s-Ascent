@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,11 +10,15 @@ public class Player : MonoBehaviour
     private float currentHealth;
 
     public bool isInvulnerable = false;
+
+    public bool isInvincible = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setHealth((int)currentHealth);
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].makeInvincible(isInvincible);
     }
 
     // Update is called once per frame
@@ -25,9 +30,10 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (isInvulnerable) return;
+        if (isInvincible) return;
 
         currentHealth -= damage;
-        Debug.Log("Player took " + damage + " damage. Current health: " + currentHealth);
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setHealth((int)currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -43,10 +49,20 @@ public class Player : MonoBehaviour
     public void makeInvulnerable(bool value)
     {
         isInvulnerable = value;
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].makeInvincible(isInvincible);
     }
 
     public bool IsInvulnerable()
     {
         return isInvulnerable;
+    }
+
+    public void makeInvincible(bool value)
+    {
+        isInvincible = value;
+    }
+    public bool IsInvincible()
+    {
+        return isInvincible;
     }
 }

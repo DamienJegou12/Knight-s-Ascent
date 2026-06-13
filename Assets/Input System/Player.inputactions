@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Invincible",
+                    "type": "Button",
+                    "id": "06be10d7-31cc-4fbc-bae2-ef91e5937fc1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -521,6 +530,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse;keyboard",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3910e84f-7184-4e72-9d29-c35855b9ff9f",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;keyboard",
+                    "action": "Invincible",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

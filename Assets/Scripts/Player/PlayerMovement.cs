@@ -155,6 +155,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        if(GetComponent<Player>().IsInvincible())
+        {
+            return;
+        }
         Die();
     }
     public void Die()
@@ -263,5 +267,10 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setCanDash(true);
         canDash = true;
+    }
+
+    void OnInvincible()
+    {
+        GetComponent<Player>().makeInvincible(!GetComponent<Player>().IsInvincible());
     }
 }

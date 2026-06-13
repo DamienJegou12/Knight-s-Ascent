@@ -19,6 +19,10 @@ public class GameSession : MonoBehaviour
     TextMeshProUGUI dashText;
     [SerializeField]
     TextMeshProUGUI rollText;
+    [SerializeField]
+    private TextMeshProUGUI healthText;
+
+    private int currentHealth = 100;
 
     private bool canDash = true;
     private bool canRoll = true;
@@ -26,10 +30,12 @@ public class GameSession : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         livesText.text = "Lives : " + playerLives.ToString();
         coinsText.text = "Coins : " + coins.ToString();
         dashText.text = "Dash : " + (canDash ? "Yes" : "No");
         rollText.text = "Roll : " + (canRoll ? "Yes" : "No");
+        healthText.text = "Health : " + currentHealth.ToString();
     }
 
     // Update is called once per frame
@@ -112,5 +118,22 @@ public class GameSession : MonoBehaviour
     {
         canRoll = value;
         rollText.text = "Roll : " + (canRoll ? "Yes" : "No");
+    }
+
+    public void setHealth(int value)
+    {
+        currentHealth = value;
+        healthText.text = "Health : " + currentHealth.ToString();
+    }
+
+    public void makeInvincible(bool value)
+    {
+        if (value)
+        {
+            healthText.text = "Health : INVINCIBLE";
+        }else
+        {
+            healthText.text = "Health : " + currentHealth.ToString();
+        }
     }
 }

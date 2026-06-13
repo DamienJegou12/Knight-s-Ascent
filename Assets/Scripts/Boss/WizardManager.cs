@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WizardManager : Enemy
 {
@@ -62,6 +63,7 @@ public class WizardManager : Enemy
     {
         Debug.Log("Le boss est vaincu !");
         // Ajouter ici les animations de mort, loot, etc.
+        SceneManager.LoadScene("Victory");
         Destroy(gameObject);
     }
 
