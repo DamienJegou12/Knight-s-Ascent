@@ -52,6 +52,27 @@ public class WizardMovement : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        // On vérifie que les bords sont bien assignés dans l'inspecteur
+        if (leftPlatformEdge == null || rightPlatformEdge == null) return;
+
+        // S'il dépasse le bord gauche, on le téléporte sur le bord gauche
+        if (transform.position.x < leftPlatformEdge.position.x)
+        {
+            transform.position = new Vector3(leftPlatformEdge.position.x, transform.position.y, transform.position.z);
+            isDashing = false; // On stoppe le dash s'il fonçait dans le mur
+            Debug.Log("Téléportation d'urgence sur le bord gauche !");
+        }
+        // S'il dépasse le bord droit, on le téléporte sur le bord droit
+        else if (transform.position.x > rightPlatformEdge.position.x)
+        {
+            transform.position = new Vector3(rightPlatformEdge.position.x, transform.position.y, transform.position.z);
+            isDashing = false; // On stoppe le dash
+            Debug.Log("Téléportation d'urgence sur le bord droit !");
+        }
+    }
+
     private void MoveAwayFromPlayer()
     {
         // Détermine la direction opposée au joueur
@@ -95,5 +116,10 @@ public class WizardMovement : MonoBehaviour
     public void EndDash()
     {
         isDashing = false;
+    }
+
+    public Transform GetPlayerTransform()
+    {
+        return player;
     }
 }

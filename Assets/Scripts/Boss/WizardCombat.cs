@@ -39,6 +39,13 @@ public class WizardCombat : MonoBehaviour
         if (Time.time >= nextAttackTime)
         {
             // On récupère le cooldown spécifique à l'attaque qui vient d'être lancée
+            Transform playerTransform = movementScript.GetPlayerTransform();
+            if (playerTransform.position.x - transform.position.x > 8f)
+            {
+                // Si le joueur est trop loin, on ne lance pas d'attaque et on attend un peu
+                nextAttackTime = Time.time + 1f; // Attente de 1 seconde avant de réessayer
+                return;
+            }
             float cooldownToApply = ExecuteRandomAttack();
             nextAttackTime = Time.time + cooldownToApply;
         }

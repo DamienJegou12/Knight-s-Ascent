@@ -300,7 +300,7 @@ MonoBehaviour:
   rayonAttaque: 0.7
   layerEnnemi:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 16904
 --- !u!114 &1367263845486239454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +316,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   isInvulnerable: 0
+  isInvincible: 0
 --- !u!1 &1270870734341256882
 GameObject:
   m_ObjectHideFlags: 0
