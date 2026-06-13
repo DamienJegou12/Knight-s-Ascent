@@ -15,12 +15,21 @@ public class GameSession : MonoBehaviour
     TextMeshProUGUI livesText;
     [SerializeField]
     TextMeshProUGUI coinsText;
+    [SerializeField]
+    TextMeshProUGUI dashText;
+    [SerializeField]
+    TextMeshProUGUI rollText;
+
+    private bool canDash = true;
+    private bool canRoll = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         livesText.text = "Lives : " + playerLives.ToString();
         coinsText.text = "Coins : " + coins.ToString();
+        dashText.text = "Dash : " + (canDash ? "Yes" : "No");
+        rollText.text = "Roll : " + (canRoll ? "Yes" : "No");
     }
 
     // Update is called once per frame
@@ -91,5 +100,17 @@ public class GameSession : MonoBehaviour
     {
         playerLives++;
         livesText.text = "Lives : " + playerLives.ToString();
+    }
+
+    public void setCanDash(bool value)
+    {
+        canDash = value;
+        dashText.text = "Dash : " + (canDash ? "Yes" : "No");
+    }
+
+    public void setCanRoll(bool value)
+    {
+        canRoll = value;
+        rollText.text = "Roll : " + (canRoll ? "Yes" : "No");
     }
 }

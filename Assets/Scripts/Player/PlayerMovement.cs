@@ -211,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canRoll) return; // Empêche de roll si en cooldown
         isRolling = true;
         canRoll = false;
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setCanRoll(false);
         myAnimator.SetBool("isRolling", true);
         GetComponent<Player>().makeInvulnerable(true);
         myRigidbody.linearVelocity = new Vector2((isFacingRight ? 1 : -1) * rollForce, myRigidbody.linearVelocity.y);
@@ -241,12 +242,14 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator RollCooldownRoutine()
     {
         yield return new WaitForSeconds(rollCooldown);
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setCanRoll(true);
         canRoll = true;
     }
 
     private IEnumerator Dash()
     {
         // (Le code du dash reste exactement le même que précédemment)
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setCanDash(false);
         canDash = false;
         isDashing = true;
         GetComponent<Player>().makeInvulnerable(true);
@@ -258,6 +261,7 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         GetComponent<Player>().makeInvulnerable(false);
         yield return new WaitForSeconds(dashCooldown);
+        FindObjectsByType<GameSession>(FindObjectsSortMode.None)[0].setCanDash(true);
         canDash = true;
     }
 }
